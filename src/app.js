@@ -182,11 +182,11 @@ export function createApp(cfg = config) {
     return { profile: profileOut(profile), projects: projects.map(projectOut) };
   }
 
-  // ---------- login ----------
+  // ---------- login (Updated for Mobile Cross-Domain Support) ----------
   const cookieOptions = (req) => ({
     httpOnly: true,
-    sameSite: cfg.sameSite,
-    secure: req.secure || cfg.sameSite === 'none',
+    sameSite: 'none',   // Forces cross-site cookie allowed for mobile browsers
+    secure: true,       // Required for HTTPS across Vercel and Render
     path: '/',
   });
 
